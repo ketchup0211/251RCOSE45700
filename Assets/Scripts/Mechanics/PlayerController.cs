@@ -26,6 +26,10 @@ namespace Platformer.Mechanics
         /// Initial jump velocity at the start of a jump.
         /// </summary>
         public float jumpTakeOffSpeed = 7;
+        //  additional variable for double jump
+        public int maxJumpCount = 2;
+        //  additional variable for jump counting
+        private int jumpCount = 0;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -53,11 +57,13 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-            if (controlEnabled)
+             if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount){
                     jumpState = JumpState.PrepareToJump;
+                    jumpCount++;
+                }
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
@@ -94,6 +100,7 @@ namespace Platformer.Mechanics
                     {
                         Schedule<PlayerLanded>().player = this;
                         jumpState = JumpState.Landed;
+                        jumpCount = 0;
                     }
                     break;
                 case JumpState.Landed:
