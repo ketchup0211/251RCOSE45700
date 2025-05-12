@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,89 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mario_run_0
+      name: MarioRun_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 101
-        width: 52
-        height: 50
+        x: 0
+        y: 84
+        width: 84
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 64565c57dab066ed0800000000000000
-      internalID: -2421234910031944378
+      spriteID: 50a71dd0dc5d5472b89beb189c7cff75
+      internalID: -5166750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mario_run_1
+      name: MarioRun_1
       rect:
         serializedVersion: 2
-        x: 99
-        y: 101
-        width: 56
-        height: 50
+        x: 84
+        y: 84
+        width: 84
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 941d2b829717e6bc0800000000000000
-      internalID: -3787965471384219319
+      spriteID: 7175823712c3e486683e059a3e34553d
+      internalID: -674254761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mario_run_2
+      name: MarioRun_2
       rect:
         serializedVersion: 2
-        x: 15
-        y: 17
-        width: 56
-        height: 50
+        x: 0
+        y: 0
+        width: 84
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 773b10bee5546f2d0800000000000000
-      internalID: -3245330207501864073
+      spriteID: 822b850e0284d40969d9e199e22b573e
+      internalID: 1438715432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mario_run_3
+      name: MarioRun_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 17
-        width: 56
-        height: 50
+        x: 84
+        y: 0
+        width: 84
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3e774fd29ddef600800000000000000
-      internalID: 504083831193042491
+      spriteID: c9f1d7f8d026d426791b259c64eca216
+      internalID: 688845428
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8f4b95f02fa5f40689bbfaec590a50a1
     internalID: 0
     vertices: []
     indices: 
@@ -223,10 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mario_run_0: -2421234910031944378
-      mario_run_1: -3787965471384219319
-      mario_run_2: -3245330207501864073
-      mario_run_3: 504083831193042491
+      MarioRun_0: -5166750
+      MarioRun_1: -674254761
+      MarioRun_2: 1438715432
+      MarioRun_3: 688845428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
