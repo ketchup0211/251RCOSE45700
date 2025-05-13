@@ -8,33 +8,21 @@ using Platformer.Core;
 
 namespace Platformer.Mechanics
 {
-    /// <summary>
-    /// This is the main class used to implement control of the player.
-    /// It is a superset of the AnimationController class, but is inlined to allow for any kind of customisation.
-    /// </summary>
     public class PlayerController : KinematicObject
     {
         public AudioClip jumpAudio;
         public AudioClip[] respawnSounds;
         public AudioClip ouchAudio;
 
-        /// <summary>
-        /// Max horizontal speed of the player.
-        /// </summary>
         public float maxSpeed = 7;
-        /// <summary>
-        /// Initial jump velocity at the start of a jump.
-        /// </summary>
         public float jumpTakeOffSpeed = 7;
-        //  additional variable for double jump
+
         public int maxJumpCount = 2;
-        //  additional variable for jump counting
         private int jumpCount = 0;
 
         public JumpState jumpState = JumpState.Grounded;
-        private bool stopJump;
-        /*internal new*/ public Collider2D collider2d;
-        /*internal new*/ public AudioSource audioSource;
+        public Collider2D collider2d;
+        public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
@@ -57,23 +45,22 @@ namespace Platformer.Mechanics
 
         protected override void Update()
         {
-             if (controlEnabled)
+            if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
-                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount < maxJumpCount){
+
+                // 점프 키 입력
+                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount < maxJumpCount)
+                {
                     jumpState = JumpState.PrepareToJump;
                     jumpCount++;
-                }
-                else if (Input.GetButtonUp("Jump") || Input.GetKeyUp(KeyCode.UpArrow))
-                {
-                    stopJump = true;
-                    Schedule<PlayerStopJump>().player = this;
                 }
             }
             else
             {
                 move.x = 0;
             }
+
             UpdateJumpState();
             base.Update();
         }
@@ -86,7 +73,6 @@ namespace Platformer.Mechanics
                 case JumpState.PrepareToJump:
                     jumpState = JumpState.Jumping;
                     jump = true;
-                    stopJump = false;
                     break;
                 case JumpState.Jumping:
                     if (!IsGrounded)
@@ -116,22 +102,24 @@ namespace Platformer.Mechanics
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                 jump = false;
             }
-            else if (stopJump)
-            {
-                stopJump = false;
-                if (velocity.y > 0)
-                {
-                    velocity.y = velocity.y * model.jumpDeceleration;
-                }
-            }
 
+            // 좌우 반전 처리
             if (move.x > 0.01f)
                 spriteRenderer.flipX = false;
             else if (move.x < -0.01f)
                 spriteRenderer.flipX = true;
 
             animator.SetBool("grounded", IsGrounded);
-            animator.SetFloat("velocityX", Mathf.Abs(velocity.x));
+
+            // velocityX 값 계산 (미세 흔들림 제거)
+            if (Mathf.Abs(move.x) < 0.01f)
+                move.x = 0f;
+
+            float vx = Mathf.Abs(velocity.x);
+            if (vx < 0.01f)
+                vx = 0f;
+
+            animator.SetFloat("velocityX", vx);
 
             targetVelocity = move * maxSpeed;
         }
