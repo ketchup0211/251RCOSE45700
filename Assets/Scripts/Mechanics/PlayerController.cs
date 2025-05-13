@@ -14,8 +14,9 @@ namespace Platformer.Mechanics
         public AudioClip[] respawnSounds;
         public AudioClip ouchAudio;
 
-        public float maxSpeed = 7;
-        public float jumpTakeOffSpeed = 7;
+        public float maxSpeed = 20f;          // 더 빠르게 이동
+        public float jumpTakeOffSpeed = 25f; // 더 높이 점프
+
 
         public int maxJumpCount = 2;
         private int jumpCount = 0;
