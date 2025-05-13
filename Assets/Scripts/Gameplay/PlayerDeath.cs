@@ -28,6 +28,7 @@ namespace Platformer.Gameplay
                 if (player.audioSource && player.ouchAudio)
                     player.audioSource.PlayOneShot(player.ouchAudio);
                 player.animator.SetTrigger("hurt");
+                player.animator.SetTrigger("die");
                 player.animator.SetBool("dead", true);
                 /* TODO: 사망 시 이펙트 (정지 -> 잠깐 공중부양 -> 낙하) */
                 //player.BeginDeathEffect(); 

@@ -19,7 +19,7 @@ namespace Platformer.Mechanics
 
 
         public int maxJumpCount = 2;
-        private int jumpCount = 0;
+        public int jumpCount = 0;
 
         public JumpState jumpState = JumpState.Grounded;
         public Collider2D collider2d;

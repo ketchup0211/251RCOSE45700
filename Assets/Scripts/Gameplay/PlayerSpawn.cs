@@ -23,6 +23,7 @@ namespace Platformer.Gameplay
             player.health.Increment();
             player.Teleport(model.spawnPoint.transform.position);
             player.jumpState = PlayerController.JumpState.Grounded;
+            player.jumpCount = 0;
             player.animator.SetBool("dead", false);
             model.virtualCamera.Follow = player.transform;
             model.virtualCamera.LookAt = player.transform;
