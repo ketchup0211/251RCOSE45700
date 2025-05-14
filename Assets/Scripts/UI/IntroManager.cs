@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using Platformer.Mechanics;
 
 public class IntroManager : MonoBehaviour
@@ -6,28 +7,30 @@ public class IntroManager : MonoBehaviour
     public GameObject introPanel;
     public PlayerController player;
 
-    private bool gameStarted = false;
+    private bool introCleared = false;
+    private bool controlEnabled = false;
 
     void Start()
     {
-        // 플레이어 조작 비활성화
         if (player != null)
             player.controlEnabled = false;
     }
 
     void Update()
     {
-        if (!gameStarted && Input.anyKeyDown)
+        if (!introCleared && Input.anyKeyDown)
         {
-            gameStarted = true;
-
-            // 인트로 UI 제거
-            if (introPanel != null)
-                introPanel.SetActive(false);
-
-            // 플레이어 조작 활성화
+            // 첫 키 입력 → UI 제거, 조작은 아직 비활성화
+            introPanel.SetActive(false);
+            introCleared = true;
+        }
+        else if (introCleared && !controlEnabled && Input.anyKeyDown)
+        {
+            // 두 번째 키 입력 → 조작 가능
             if (player != null)
                 player.controlEnabled = true;
+
+            controlEnabled = true;
         }
     }
 }
