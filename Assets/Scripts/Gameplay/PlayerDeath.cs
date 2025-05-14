@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Platformer.Core;
 using Platformer.Model;
 using UnityEngine;
+using Platformer.Mechanics;
 
 namespace Platformer.Gameplay
 {
@@ -34,7 +35,18 @@ namespace Platformer.Gameplay
                 //player.BeginDeathEffect(); 
 
                 // UI Manager 호출
-                Object.FindFirstObjectByType<UIManager>()?.AddDeath();
+                var ui = Object.FindFirstObjectByType<UIManager>();
+                if (ui != null)
+                {
+                    ui.AddDeath();
+                    ui.ResetTokenCount(); // ← 토큰 개수 초기화
+                }
+
+                // 토큰 리셋
+                foreach (var token in Object.FindObjectsByType<TokenInstance>(FindObjectsSortMode.None))
+                {
+                    token.ResetToken();
+                }
 
                 Simulation.Schedule<PlayerSpawn>(1.3f);
             }

@@ -72,5 +72,13 @@ namespace Platformer.Mechanics
             ev.token = this;
             ev.player = player;
         }
+
+        public void ResetToken()
+        {
+            collected = false;
+            sprites = idleAnimation;
+            _renderer.enabled = true;
+        }
+
     }
 }

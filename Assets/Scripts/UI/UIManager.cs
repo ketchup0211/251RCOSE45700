@@ -33,4 +33,9 @@ public class UIManager : MonoBehaviour
     {
         deathCount++;
     }
+
+    public void ResetTokenCount()
+    {
+        tokenCount = 0;
+    }
 }
