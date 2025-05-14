@@ -1979,7 +1979,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.414056, y: 4.13051, z: -7.9799995}
+  m_LocalPosition: {x: 2.2628584, y: 3.6454198, z: -7.9799995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3265,7 +3265,7 @@ PrefabInstance:
     - target: {fileID: 114230831923080080, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
       propertyPath: jumpTakeOffSpeed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114230831923080080, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
@@ -11379,7 +11379,7 @@ Transform:
   m_GameObject: {fileID: 1946717923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.014332849, y: 4.37, z: -7.9799995}
+  m_LocalPosition: {x: -0.014332849, y: 3.87, z: -7.9799995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11417,18 +11417,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraDistance: 8.98
-  DeadZoneDepth: 0.129
+  DeadZoneDepth: 50
   Composition:
     ScreenPosition: {x: 0.00039060786, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.1, y: 1}
+      Size: {x: 0.1, y: 2}
     HardLimits:
       Enabled: 1
-      Size: {x: 0.8, y: 1}
+      Size: {x: 0.8, y: 3}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 5, z: 0}
+  TargetOffset: {x: 0, y: 4.5, z: 0}
   Damping: {x: 1, y: 0, z: 1}
   Lookahead:
     Enabled: 0
