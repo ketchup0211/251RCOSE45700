@@ -4,8 +4,6 @@ using Platformer.Mechanics;
 
 public class IntroManager : MonoBehaviour
 {
-    public static bool GameStarted = false;
-    
     public GameObject introPanel;
     public PlayerController player;
 
