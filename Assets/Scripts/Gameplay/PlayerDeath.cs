@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Platformer.Core;
 using Platformer.Model;
 using UnityEngine;
+using Platformer.Mechanics;
 
 namespace Platformer.Gameplay
 {
@@ -28,8 +29,26 @@ namespace Platformer.Gameplay
                 if (player.audioSource && player.ouchAudio)
                     player.audioSource.PlayOneShot(player.ouchAudio);
                 player.animator.SetTrigger("hurt");
+                player.animator.SetTrigger("die");
                 player.animator.SetBool("dead", true);
-                Simulation.Schedule<PlayerSpawn>(2);
+                /* TODO: 사망 시 이펙트 (정지 -> 잠깐 공중부양 -> 낙하) */
+                //player.BeginDeathEffect(); 
+
+                // UI Manager 호출
+                var ui = Object.FindFirstObjectByType<UIManager>();
+                if (ui != null)
+                {
+                    ui.AddDeath();
+                    ui.ResetTokenCount(); // ← 토큰 개수 초기화
+                }
+
+                // 토큰 리셋
+                foreach (var token in Object.FindObjectsByType<TokenInstance>(FindObjectsSortMode.None))
+                {
+                    token.ResetToken();
+                }
+
+                Simulation.Schedule<PlayerSpawn>(1.3f);
             }
         }
     }

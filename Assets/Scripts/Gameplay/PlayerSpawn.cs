@@ -16,15 +16,18 @@ namespace Platformer.Gameplay
             var player = model.player;
             player.collider2d.enabled = true;
             player.controlEnabled = false;
-            if (player.audioSource && player.respawnAudio)
-                player.audioSource.PlayOneShot(player.respawnAudio);
+            if (player.audioSource != null && player.respawnSounds.Length > 0){
+                int i = UnityEngine.Random.Range(0, player.respawnSounds.Length);
+                player.audioSource.PlayOneShot(player.respawnSounds[i]);
+            }
             player.health.Increment();
             player.Teleport(model.spawnPoint.transform.position);
             player.jumpState = PlayerController.JumpState.Grounded;
+            player.jumpCount = 0;
             player.animator.SetBool("dead", false);
             model.virtualCamera.Follow = player.transform;
             model.virtualCamera.LookAt = player.transform;
-            Simulation.Schedule<EnablePlayerInput>(2f);
+            Simulation.Schedule<EnablePlayerInput>(0.3f);
         }
     }
 }
