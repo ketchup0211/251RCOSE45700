@@ -12,8 +12,10 @@ public class UIManager : MonoBehaviour
     private float playTime = 0f;
 
     void Update()
-    {
-        playTime += Time.deltaTime;
+    {   
+        // 게임 시작 후에만 시간 증가
+        if (IntroManager.GameStarted)
+            playTime += Time.deltaTime;
         UpdateUI();
     }
 
