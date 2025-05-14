@@ -32,6 +32,10 @@ namespace Platformer.Gameplay
                 player.animator.SetBool("dead", true);
                 /* TODO: 사망 시 이펙트 (정지 -> 잠깐 공중부양 -> 낙하) */
                 //player.BeginDeathEffect(); 
+
+                // UI Manager 호출
+                Object.FindFirstObjectByType<UIManager>()?.AddDeath();
+
                 Simulation.Schedule<PlayerSpawn>(1.3f);
             }
         }

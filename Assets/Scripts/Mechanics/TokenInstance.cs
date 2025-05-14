@@ -64,6 +64,9 @@ namespace Platformer.Mechanics
             if (tokenCollectAudio != null)
                 AudioSource.PlayClipAtPoint(tokenCollectAudio, transform.position);
 
+            // UI Manager 호출
+            Object.FindFirstObjectByType<UIManager>()?.AddToken();
+
             // 이벤트 전송
             var ev = Schedule<PlayerTokenCollision>();
             ev.token = this;
