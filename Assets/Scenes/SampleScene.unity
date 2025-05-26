@@ -1980,7 +1980,7 @@ PrefabInstance:
     - target: {fileID: 3712022610110487715, guid: b0b84e0f5997846389f8c0bec1956d41,
         type: 3}
       propertyPath: m_Name
-      value: FoxtailThron (1)
+      value: FoxtailThron
       objectReference: {fileID: 0}
     - target: {fileID: 3769815557536048238, guid: b0b84e0f5997846389f8c0bec1956d41,
         type: 3}

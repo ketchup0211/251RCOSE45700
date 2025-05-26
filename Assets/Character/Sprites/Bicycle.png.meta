@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1cf01b2e2d98541628ce50304e00fa01
+guid: 52a5a5825c641487e94d97c92feaf6f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8468855775645844955
-    second: MarioDead_0
+      213: -935974880193732684
+    second: Bicycle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MarioDead_0
+      name: Bicycle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 14
-        width: 64
-        height: 50
+        x: 5
+        y: 13
+        width: 56
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bd5c261457b678570800000000000000
-      internalID: 8468855775645844955
+      spriteID: 4bf1d533ecfb203f0800000000000000
+      internalID: -935974880193732684
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5f1dabf256f8d41198698c286a8b86ed
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MarioDead_0: 8468855775645844955
+      Bicycle_0: -935974880193732684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
