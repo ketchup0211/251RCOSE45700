@@ -20,6 +20,7 @@ namespace Platformer.Gameplay
                 int i = UnityEngine.Random.Range(0, player.respawnSounds.Length);
                 player.audioSource.PlayOneShot(player.respawnSounds[i]);
             }
+            model.virtualCamera.OnTargetObjectWarped(player.transform, model.spawnPoint.transform.position - player.transform.position);
             player.health.Increment();
             player.Teleport(model.spawnPoint.transform.position);
             player.jumpState = PlayerController.JumpState.Grounded;
