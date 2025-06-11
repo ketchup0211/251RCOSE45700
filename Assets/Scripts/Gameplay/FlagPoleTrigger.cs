@@ -1,86 +1,73 @@
 using UnityEngine;
 using Platformer.Mechanics;
 using Platformer.Core;
+using System.Collections;
 
 public class FlagPoleTrigger : MonoBehaviour
 {
     public Transform slideStartPoint;
-    public Transform slideEndPoint;
-    public Transform flagObject;
+    public Transform flagEndPoint;      // 깃발이 멈출 위치
+    public Transform playerEndPoint;    // 플레이어가 내려갈 위치
+    public GameObject flagObject;
+
     public float slideSpeed = 2f;
     public float walkSpeed = 2f;
     public float walkDuration = 2f;
 
-    private bool sliding = false;
-    private bool walking = false;
-    private float walkTimer = 0f;
-
-    private PlayerController player;
-    private Vector3 flagStartPos;
-    private Vector3 flagEndPos;
-
-    void Start()
-    {
-        if (flagObject != null)
-        {
-            flagStartPos = flagObject.position;
-            flagEndPos = new Vector3(flagStartPos.x, slideEndPoint.position.y, flagStartPos.z);
-        }
-    }
+    private bool triggered = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (triggered) return;
+
+        var player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            player = other.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.controlEnabled = false;
-                player.velocity = Vector2.zero;
-                player.transform.position = slideStartPoint.position;
-                sliding = true;
-            }
+            triggered = true;
+            StartCoroutine(SlideSequence(player));
         }
     }
 
-    void Update()
+    IEnumerator SlideSequence(PlayerController player)
     {
-        if (sliding && player != null)
+        player.controlEnabled = false;
+
+        // 플레이어 위치: FlagPole X 위치 + 슬라이드 시작 Y
+        var poleX = transform.position.x;
+        Vector3 playerStart = new Vector3(poleX, slideStartPoint.position.y, player.transform.position.z);
+        player.transform.position = playerStart;
+
+        // 깃발 위치: 현재 X 고정 + 슬라이드 시작 Y
+        Vector3 flagStart = new Vector3(flagObject.transform.position.x, slideStartPoint.position.y, flagObject.transform.position.z);
+        flagObject.transform.position = flagStart;
+
+        // 슬라이딩 내려오기
+        while (player.transform.position.y > playerEndPoint.position.y || flagObject.transform.position.y > flagEndPoint.position.y)
         {
-            // 플레이어와 깃발을 같이 슬라이드
-            player.transform.position = Vector3.MoveTowards(
-                player.transform.position,
-                slideEndPoint.position,
-                slideSpeed * Time.deltaTime
-            );
-
-            if (flagObject != null)
+            if (player.transform.position.y > playerEndPoint.position.y)
             {
-                flagObject.position = Vector3.MoveTowards(
-                    flagObject.position,
-                    flagEndPos,
-                    slideSpeed * Time.deltaTime
-                );
+                player.transform.position += Vector3.down * slideSpeed * Time.deltaTime;
             }
 
-            if (Vector3.Distance(player.transform.position, slideEndPoint.position) < 0.01f)
+            if (flagObject.transform.position.y > flagEndPoint.position.y)
             {
-                sliding = false;
-                walking = true;
-                walkTimer = 0f;
+                Vector3 flagPos = flagObject.transform.position;
+                flagPos.y -= slideSpeed * Time.deltaTime;
+                flagObject.transform.position = flagPos;
             }
+
+            yield return null;
         }
 
-        if (walking && player != null)
+        // 일정 시간 걷기
+        float walkTime = 0f;
+        while (walkTime < walkDuration)
         {
-            walkTimer += Time.deltaTime;
             player.transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-
-            if (walkTimer >= walkDuration)
-            {
-                walking = false;
-                player.controlEnabled = true; // 혹은 씬 전환 트리거
-            }
+            walkTime += Time.deltaTime;
+            yield return null;
         }
+
+        // TODO: 스테이지 클리어 처리
     }
 }
