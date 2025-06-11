@@ -32,12 +32,11 @@ public class FlagPoleTrigger : MonoBehaviour
     {
         player.controlEnabled = false;
 
-        // 플레이어 위치: FlagPole X 위치 + 슬라이드 시작 Y
+        // 위치 세팅
         var poleX = transform.position.x;
         Vector3 playerStart = new Vector3(poleX, slideStartPoint.position.y, player.transform.position.z);
         player.transform.position = playerStart;
 
-        // 깃발 위치: 현재 X 고정 + 슬라이드 시작 Y
         Vector3 flagStart = new Vector3(flagObject.transform.position.x, slideStartPoint.position.y, flagObject.transform.position.z);
         flagObject.transform.position = flagStart;
 
@@ -45,9 +44,7 @@ public class FlagPoleTrigger : MonoBehaviour
         while (player.transform.position.y > playerEndPoint.position.y || flagObject.transform.position.y > flagEndPoint.position.y)
         {
             if (player.transform.position.y > playerEndPoint.position.y)
-            {
                 player.transform.position += Vector3.down * slideSpeed * Time.deltaTime;
-            }
 
             if (flagObject.transform.position.y > flagEndPoint.position.y)
             {
@@ -59,14 +56,26 @@ public class FlagPoleTrigger : MonoBehaviour
             yield return null;
         }
 
-        // 일정 시간 걷기
+        // ➤ 걷기 애니메이션 적용
+        if (player.animator != null)
+            player.animator.SetFloat("velocityX", 1f);
+
         float walkTime = 0f;
         while (walkTime < walkDuration)
         {
             player.transform.position += Vector3.right * walkSpeed * Time.deltaTime;
             walkTime += Time.deltaTime;
+
+            // ➤ 걷는 동안에도 애니메이션 유지
+            if (player.animator != null)
+                player.animator.SetFloat("velocityX", 1f);
+                
             yield return null;
         }
+
+        // ➤ 걷기 종료 후 애니메이션 멈춤 처리
+        if (player.animator != null)
+            player.animator.SetFloat("velocityX", 0f);
 
         // TODO: 스테이지 클리어 처리
     }
