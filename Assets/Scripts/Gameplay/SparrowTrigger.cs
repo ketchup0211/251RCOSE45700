@@ -4,7 +4,6 @@ public class SparrowTrigger : MonoBehaviour
 {
     public Transform player;             // 플레이어 트랜스폼
     public float triggerDistance = 3f;   // 반응 거리
-    public DropletSpawner dropletSpawner; // 🔥 드롭렛 스포너 연결
 
     private Animator animator;
     private SparrowFly sparrowFly;
@@ -27,13 +26,7 @@ public class SparrowTrigger : MonoBehaviour
             }
             else
             {
-                animator.SetTrigger("FlyTrigger");
-            }
-
-            // ✅ 드롭렛 스포너 작동 시작
-            if (dropletSpawner != null)
-            {
-                dropletSpawner.StartSpawning();
+                animator.SetTrigger("FlyTrigger"); // 백업: 애니메이터만 있는 경우
             }
 
             hasFlown = true;
