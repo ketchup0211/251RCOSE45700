@@ -1,37 +1,47 @@
 using UnityEngine;
+using Platformer.Mechanics;
+using Platformer.Core;
 
+[RequireComponent(typeof(Collider2D))]
 public class WaterDroplet : MonoBehaviour
 {
-    public Transform spawnPoint;  // 처음 위치 (Spawer가 할당해줌)
-    public float resetDelay = 0.5f; // 다시 떨어지기까지 시간
+    public Transform spawnPoint;
+    public float resetDelay = 0.5f;
 
-    private Rigidbody2D rb;
-    private Collider2D coll;
+    private bool isResetting = false;
 
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
-    }
+        if (isResetting) return;
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
+        var player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            // 물리 및 충돌 일시 비활성화
-            rb.linearVelocity = Vector2.zero;
-            rb.isKinematic = true;
-            coll.enabled = false;
-
-            // 잠시 후 초기 위치로 되돌림
-            Invoke(nameof(ResetDroplet), resetDelay);
+            // 플레이어 사망
+            Simulation.Schedule<Platformer.Gameplay.PlayerDeath>();
         }
+
+        // 바닥 또는 플레이어와 충돌 시 리셋 시작
+        StartCoroutine(ResetDroplet());
     }
 
-    void ResetDroplet()
+    System.Collections.IEnumerator ResetDroplet()
     {
+        isResetting = true;
+
+        // 약간의 시간 지연 후 위치 초기화
+        yield return new WaitForSeconds(resetDelay);
+
+        // 위치 초기화 및 속도 리셋
         transform.position = spawnPoint.position;
-        rb.isKinematic = false;
-        coll.enabled = true;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        isResetting = false;
     }
 }
