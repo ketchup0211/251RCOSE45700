@@ -5749,6 +5749,7 @@ GameObject:
   - component: {fileID: 1210762543}
   - component: {fileID: 1210762546}
   - component: {fileID: 1210762545}
+  - component: {fileID: 1210762547}
   m_Layer: 0
   m_Name: Sparrow
   m_TagString: Untagged
@@ -5863,6 +5864,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1210762547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210762542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e7eb58011ab44e9809e426e58f76d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1210762546}
+  flySpeed: 2
+  flyDirection: {x: -1, y: 1}
+  flyDuration: 2
 --- !u!4 &1213308513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4520396350849616, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
