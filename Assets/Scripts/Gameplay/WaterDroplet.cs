@@ -14,25 +14,28 @@ public class WaterDroplet : MonoBehaviour
     {
         if (isResetting) return;
 
+        // ✅ Ground에 닿은 경우
+        if (other.CompareTag("Ground"))
+        {
+            StartCoroutine(ResetDroplet());
+            return;
+        }
+
+        // ✅ 플레이어에 닿은 경우
         var player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            // 플레이어 사망
             Simulation.Schedule<Platformer.Gameplay.PlayerDeath>();
+            StartCoroutine(ResetDroplet()); // 사망 후에도 droplet reset
         }
-
-        // 바닥 또는 플레이어와 충돌 시 리셋 시작
-        StartCoroutine(ResetDroplet());
     }
 
     System.Collections.IEnumerator ResetDroplet()
     {
         isResetting = true;
 
-        // 약간의 시간 지연 후 위치 초기화
         yield return new WaitForSeconds(resetDelay);
 
-        // 위치 초기화 및 속도 리셋
         transform.position = spawnPoint.position;
 
         var rb = GetComponent<Rigidbody2D>();

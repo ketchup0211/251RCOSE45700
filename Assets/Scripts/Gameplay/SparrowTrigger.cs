@@ -4,7 +4,6 @@ public class SparrowTrigger : MonoBehaviour
 {
     public Transform player;             // 플레이어 트랜스폼
     public float triggerDistance = 3f;   // 반응 거리
-    public DropletSpawner dropletSpawner; // 🔥 드롭렛 스포너 연결
 
     private Animator animator;
     private SparrowFly sparrowFly;
@@ -13,27 +12,21 @@ public class SparrowTrigger : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        sparrowFly = GetComponent<SparrowFly>(); // 🔥 SparrowFly 컴포넌트도 가져옴
+        sparrowFly = GetComponent<SparrowFly>();
     }
 
     void Update()
     {
         if (!hasFlown && Mathf.Abs(player.position.x - transform.position.x) < triggerDistance)
         {
-            // ✅ 애니메이션 & 이동 트리거 동시에 실행
+            // ✅ 애니메이션 & 물방울 트리거를 모두 포함한 함수
             if (sparrowFly != null)
             {
                 sparrowFly.TriggerFly();
             }
             else
             {
-                animator.SetTrigger("FlyTrigger");
-            }
-
-            // ✅ 드롭렛 스포너 작동 시작
-            if (dropletSpawner != null)
-            {
-                dropletSpawner.StartSpawning();
+                animator.SetTrigger("FlyTrigger"); // 백업
             }
 
             hasFlown = true;

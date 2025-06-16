@@ -6,6 +6,7 @@ public class SparrowFly : MonoBehaviour
     public float flySpeed = 2f;
     public Vector2 flyDirection = new Vector2(-1f, 1f); // 좌상단 방향
     public float flyDuration = 2f;
+    public DropletSpawner dropletSpawner; // ✅ DropletSpawner 연결
 
     private bool isFlying = false;
     private float flyTimer = 0f;
@@ -30,6 +31,12 @@ public class SparrowFly : MonoBehaviour
         {
             isFlying = true;
             animator.SetTrigger("FlyTrigger");
+
+            // ✅ 날면서 물방울 떨어뜨리기 시작
+            if (dropletSpawner != null)
+            {
+                dropletSpawner.StartSpawning();
+            }
         }
     }
 }

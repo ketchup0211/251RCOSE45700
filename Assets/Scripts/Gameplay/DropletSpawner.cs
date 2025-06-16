@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DropletSpawner : MonoBehaviour
 {
-    public WaterDroplet dropletInstance;  // 직접 연결
+    public WaterDroplet dropletInstance;  // 드래그해서 연결
     public float spawnInterval = 1f;
     public bool autoStart = false;
 
@@ -12,7 +12,14 @@ public class DropletSpawner : MonoBehaviour
     void Start()
     {
         if (autoStart)
+        {
             isSpawning = true;
+            dropletInstance.gameObject.SetActive(true); // 자동 시작이면 보이게
+        }
+        else
+        {
+            dropletInstance.gameObject.SetActive(false); // 시작 시 안 보이게
+        }
     }
 
     void Update()
@@ -30,6 +37,7 @@ public class DropletSpawner : MonoBehaviour
 
     void ResetDroplet()
     {
+        dropletInstance.gameObject.SetActive(true); // 여기서도 다시 보이게
         dropletInstance.transform.position = transform.position;
         dropletInstance.spawnPoint = transform;
 
@@ -45,5 +53,10 @@ public class DropletSpawner : MonoBehaviour
     {
         isSpawning = true;
         timer = 0f;
+
+        if (dropletInstance != null)
+        {
+            dropletInstance.gameObject.SetActive(true); // ✅ 참새가 날기 시작했을 때 보이게
+        }
     }
 }
