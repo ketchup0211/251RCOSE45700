@@ -2404,8 +2404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97524f644b106401981ccc07dfa7ae75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropletPrefab: {fileID: 5342336245796375368, guid: dd8b5b478117844c49f0557930784d07,
+  dropletPrefab: {fileID: 8351306756342482753, guid: 4865df2abf55f4200844635a41deb012,
     type: 3}
+  spawnInterval: 1
+  autoStart: 0
 --- !u!4 &501036678
 Transform:
   m_ObjectHideFlags: 0
@@ -2415,7 +2417,7 @@ Transform:
   m_GameObject: {fileID: 501036676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.98401, y: 0.17584816, z: 0}
+  m_LocalPosition: {x: 11.98401, y: 2.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2579,7 +2581,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2605464, y: 3.64555, z: -7.9799995}
+  m_LocalPosition: {x: 2.285204, y: 3.6441998, z: -7.9799995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4609,7 +4611,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4922,6 +4924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1213308513}
   triggerDistance: 3
+  dropletSpawner: {fileID: 501036677}
 --- !u!95 &1210762546
 Animator:
   serializedVersion: 7
@@ -13893,6 +13896,89 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b84e0f5997846389f8c0bec1956d41, type: 3}
+--- !u!1001 &7644128164643105350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1869675814946631026, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331097882938528361, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.98401
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420986893954439303, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109634876022155822, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 501036678}
+    - target: {fileID: 8351306756342482753, guid: 4865df2abf55f4200844635a41deb012,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterDroplet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4865df2abf55f4200844635a41deb012, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -13920,3 +14006,4 @@ SceneRoots:
   - {fileID: 1780509212}
   - {fileID: 1245150202}
   - {fileID: 501036678}
+  - {fileID: 7644128164643105350}
